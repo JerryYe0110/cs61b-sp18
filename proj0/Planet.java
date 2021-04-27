@@ -1,36 +1,52 @@
 /**
 * Planet
 */
-public class Planet extends Body{
-  static final double G = 6.67e-11;
+public class Planet{
+   static final double G = 6.67e-11;
+	public double xxPos;
+	public double yyPos;
+	public double xxVel;
+	public double yyVel;
+	public double mass;
+	String imgFileName;
   public Planet(double xP, double yP, double xV, double yV, double m, String img ){
-			 super(xP, yP, xV, yV, m, img);
+	 	this.xxPos = xP;
+		this.yyPos = yP;
+		this.xxVel = xV;
+		this.yyVel = yV;
+		this.mass = m;
+		this.imgFileName = img;
   }
-  public Planet(Body b){
-	 super(b);
+  public Planet(Planet b){
+	 	this.xxPos = b.xxPos;
+		this.yyPos = b.yyPos;
+		this.xxVel = b.xxVel;
+		this.yyVel = b.yyVel;
+		this.mass = b.mass;
+		this.imgFileName = b.imgFileName;
   }
-	 public double calcDistance(Body b) {
+	 public double calcDistance(Planet b) {
 			 double dx = this.xxPos - b.xxPos;
 			 double dy = this.yyPos - b.yyPos;
 			 return Math.sqrt(dx*dx +dy*dy);
 	 }
-	 public double calcForceExertedBy(Body b) {
+	 public double calcForceExertedBy(Planet b) {
 		double distance = this.calcDistance(b);
 		return G * this.mass * b.mass /(distance*distance);
 	 }
-	 public double calcForceExertedByX(Body b) {
+	 public double calcForceExertedByX(Planet b) {
 	 	double distance = this.calcDistance(b);
 		double Force = this.calcForceExertedBy(b);
 		double dx = b.xxPos - this.xxPos;
 		return Force * dx / distance;
 	 }
-	 public double calcForceExertedByY(Body b) {
+	 public double calcForceExertedByY(Planet b) {
 	 	double distance = this.calcDistance(b);
 		double Force = this.calcForceExertedBy(b);
 		double dy = b.yyPos - this.yyPos;
 		return Force * dy / distance;
 	 }
-	 public double calcNetForceExertedByX(Body[] Bodys) {
+	 public double calcNetForceExertedByX(Planet[] Bodys) {
 		double sum = 0;
 	 	for (int i = 0; i < Bodys.length; i++) {
 	 		if (!this.equals(Bodys[i])) {
@@ -39,7 +55,7 @@ public class Planet extends Body{
 	 	}
 		return sum;
 	 }
-	 public double calcNetForceExertedByY(Body[] Bodys) {
+	 public double calcNetForceExertedByY(Planet[] Bodys) {
 		double sum = 0;
 	 	for (int i = 0; i < Bodys.length; i++) {
 	 		if (!this.equals(Bodys[i])) {
