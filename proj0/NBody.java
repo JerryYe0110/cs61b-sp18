@@ -47,7 +47,7 @@ public class NBody {
 		  StdDraw.setScale(-R, R);
 		  StdDraw.picture(0, 0, imageToDraw);
 		  for (int i = 0; i < AllPlanet.length; i++) {
-		  	 StdDraw.picture(AllPlanet[i].xxPos, AllPlanet[i].yyPos, "images/"+AllPlanet[i].imgFileName);
+			 AllPlanet[i].draw();
 		  }
 		  for (int i = 0; i < yForces.length; i++) {
 			 xForces[i] = AllPlanet[i].calcNetForceExertedByX(AllPlanet);
