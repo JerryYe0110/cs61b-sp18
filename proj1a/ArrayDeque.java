@@ -10,11 +10,15 @@ public class ArrayDeque<T> {
 	public ArrayDeque() {
 		Arraydeque = (T[])new Object[8];
 		ArrayDequelength=8;
+		firstindex = 7;
+		lastindex = 0;
 	}
 	public ArrayDeque(ArrayDeque other) {
 		ArrayDequelength = other.ArrayDequelength;
 		Arraydeque = (T[])new Object[other.ArrayDequelength];
 		System.arraycopy(Arraydeque, 0, other.Arraydeque, 0, other.ArrayDequelength-1);
+		firstindex = other.firstindex;
+		lastindex = other.lastindex;
 	}
 	public void addFirst(T item) {
 	  if (firstindex  == lastindex) resize();
