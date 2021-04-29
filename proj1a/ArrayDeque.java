@@ -31,7 +31,7 @@ public class ArrayDeque<T> {
 	  if (firstindex == lastindex) resize();
 	  Arraydeque[lastindex] = item;
 	  lastindex++;
-	  if (lastindex > ArrayDequelength) lastindex -= ArrayDequelength;
+	  if (lastindex > ArrayDequelength -1 ) lastindex -= ArrayDequelength;
 	  size++;
 	}
 	public boolean isEmpty() {
@@ -43,18 +43,19 @@ public class ArrayDeque<T> {
 	public void printDeque() {
 	   if (size == 0) {
 		System.out.printf("\n");
-	   return ;
+	   return ;	
 	   }
-	   System.out.printf(get(0).toString());
-		for (int i = 1; i < size; i++) {
-			System.out.printf(" "+get(i).toString());
+		T p = Arraydeque[firstindex+1];
+		System.out.print(p.toString());
+		for (int i = 1; i<size;i++ ){
+			System.out.print(" "+Arraydeque[(firstindex+i+1)%ArrayDequelength].toString());
 		}
-		System.out.printf("\n");
+		System.out.println();
 	}
 	public T removeFirst() {
 		if (size == 0) return null;
 		firstindex++;
-		if (firstindex > ArrayDequelength) firstindex -= ArrayDequelength;
+		if (firstindex > ArrayDequelength-1) firstindex -= ArrayDequelength;
 		T tem = Arraydeque[firstindex];
 		Arraydeque[firstindex] = null;
 		size--;
@@ -78,15 +79,10 @@ public class ArrayDeque<T> {
 	private void resize() {
 	  if (lastindex == firstindex) {
 		  T[] newArraydeque = (T[])new Object[ArrayDequelength*2];
-		  if (lastindex - 1> firstindex+1){
-		  System.arraycopy(Arraydeque,firstindex, newArraydeque, 0, lastindex);
-		  }else{
-		  System.arraycopy(Arraydeque,firstindex, newArraydeque, 0, ArrayDequelength);
-		  System.arraycopy(Arraydeque,0, newArraydeque, ArrayDequelength-firstindex, lastindex);
-		  }
+		  System.arraycopy(Arraydeque,0 ,newArraydeque, 0, firstindex);
+		  System.arraycopy(Arraydeque,firstindex, newArraydeque, ArrayDequelength+firstindex, ArrayDequelength - firstindex);
 		  Arraydeque = newArraydeque;
-		  firstindex = ArrayDequelength*2-1;
-		  lastindex = size;
+		  firstindex = ArrayDequelength+firstindex;
 		  ArrayDequelength*=2;
 	  }else{
 		  T[] newArraydeque = (T[])new Object[ArrayDequelength/2];
