@@ -71,9 +71,9 @@ public class ArrayDeque<T> {
 		return tem;
 	}
 	public T get(int index) {
-		int realindex = firstindex + index;
-		if (realindex > ArrayDequelength) realindex -= ArrayDequelength;
-		if (realindex > ArrayDequelength) return null;
+		int realindex = firstindex + 1 + index;
+		if (realindex > ArrayDequelength-1) realindex -= ArrayDequelength;
+		if (realindex > ArrayDequelength-1) return null;
 		return Arraydeque[realindex];
 	}
 	private void resize() {
