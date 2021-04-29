@@ -43,7 +43,7 @@ public class ArrayDeque<T> {
 	public void printDeque() {
 	   if (size == 0) {
 		System.out.printf("\n");
-	   return ;	
+	   return ;
 	   }
 	   System.out.printf(get(0).toString());
 		for (int i = 1; i < size; i++) {
@@ -76,7 +76,7 @@ public class ArrayDeque<T> {
 		return Arraydeque[realindex];
 	}
 	private void resize() {
-	  if (ArrayDequelength == lastindex - firstindex) {
+	  if (lastindex == firstindex) {
 		  T[] newArraydeque = (T[])new Object[ArrayDequelength*2];
 		  if (lastindex - 1> firstindex+1){
 		  System.arraycopy(Arraydeque,firstindex, newArraydeque, 0, lastindex);
