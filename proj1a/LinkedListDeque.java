@@ -59,7 +59,7 @@ public class LinkedListDeque<T> {
 	   }
 		LinkedNode<T> p = sentinel.next;
 		System.out.print(p.item.toString());
-		while (p.next != null) {
+		for (int i = 1; i<size;i++ ){
 			p = p.next;
 			System.out.print(" "+p.item.toString());
 		}
