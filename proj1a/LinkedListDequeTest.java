@@ -92,8 +92,17 @@ public class LinkedListDequeTest {
 		lld1.addLast(42);
 		lld1.addLast(43);
 		lld1.addLast(44);
-		int a = lld1.get(5);
-		System.out.println(a);
+		lld1.removeLast();
+		lld1.removeLast();
+		lld1.removeLast();
+		lld1.removeLast();
+		lld1.removeLast();
+		lld1.removeLast();
+		lld1.removeLast();
+		lld1.removeLast();
+		lld1.removeLast();
+		lld1.removeLast();
+		lld1.removeLast();
 
 		printTestStatus(passed);
 	}

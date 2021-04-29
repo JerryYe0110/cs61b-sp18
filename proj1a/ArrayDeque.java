@@ -59,6 +59,7 @@ public class ArrayDeque<T> {
 		T tem = Arraydeque[firstindex];
 		Arraydeque[firstindex] = null;
 		size--;
+		if (4 * size < ArrayDequelength && ArrayDequelength > 8) resize();
 		return tem;
 	}
 	public T removeLast() {
@@ -68,6 +69,7 @@ public class ArrayDeque<T> {
 		T tem = Arraydeque[lastindex];
 		Arraydeque[lastindex] = null;
 		size--;
+		if (4 * size < ArrayDequelength && ArrayDequelength > 8) resize();
 		return tem;
 	}
 	public T get(int index) {
@@ -79,22 +81,21 @@ public class ArrayDeque<T> {
 	private void resize() {
 	  if (lastindex == firstindex) {
 		  T[] newArraydeque = (T[])new Object[ArrayDequelength*2];
-		  System.arraycopy(Arraydeque,0 ,newArraydeque, 0, firstindex);
+		  System.arraycopy(Arraydeque,0 ,newArraydeque, 0, lastindex);
 		  System.arraycopy(Arraydeque,firstindex, newArraydeque, ArrayDequelength+firstindex, ArrayDequelength - firstindex);
 		  Arraydeque = newArraydeque;
 		  firstindex = ArrayDequelength+firstindex;
 		  ArrayDequelength*=2;
 	  }else{
 		  T[] newArraydeque = (T[])new Object[ArrayDequelength/2];
-		  if (lastindex > firstindex){
+	  if (lastindex > firstindex){
 		  System.arraycopy(Arraydeque,firstindex, newArraydeque, 0, lastindex);
 		  }else{
-		  System.arraycopy(Arraydeque,firstindex, newArraydeque, 0, ArrayDequelength);
-		  System.arraycopy(Arraydeque,0, newArraydeque, ArrayDequelength-firstindex, lastindex);
+		  System.arraycopy(Arraydeque,0 ,newArraydeque, 0, lastindex);
+		  System.arraycopy(Arraydeque,firstindex, newArraydeque, firstindex - ArrayDequelength/2, ArrayDequelength - firstindex);
 		  }
 		  Arraydeque = newArraydeque;
-		  lastindex = size;
-		  firstindex = ArrayDequelength/2-1;
+		  firstindex -= ArrayDequelength/2;
 		  ArrayDequelength/=2;
 	  }
 }
