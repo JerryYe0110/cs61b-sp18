@@ -84,18 +84,20 @@ public class ArrayDeque<T> {
 		  System.arraycopy(Arraydeque,0 ,newArraydeque, 0, lastindex);
 		  System.arraycopy(Arraydeque,firstindex, newArraydeque, ArrayDequelength+firstindex, ArrayDequelength - firstindex);
 		  Arraydeque = newArraydeque;
-		  firstindex = ArrayDequelength+firstindex;
+		  firstindex += ArrayDequelength;
 		  ArrayDequelength*=2;
 	  }else{
 		  T[] newArraydeque = (T[])new Object[ArrayDequelength/2];
 	  if (lastindex > firstindex){
-		  System.arraycopy(Arraydeque,firstindex, newArraydeque, 0, lastindex);
+		  System.arraycopy(Arraydeque,firstindex, newArraydeque, 0, lastindex-firstindex);
+		  lastindex = lastindex - firstindex;
+		  firstindex = 0;
 		  }else{
 		  System.arraycopy(Arraydeque,0 ,newArraydeque, 0, lastindex);
 		  System.arraycopy(Arraydeque,firstindex, newArraydeque, firstindex - ArrayDequelength/2, ArrayDequelength - firstindex);
+		  firstindex -= ArrayDequelength/2;
 		  }
 		  Arraydeque = newArraydeque;
-		  firstindex -= ArrayDequelength/2;
 		  ArrayDequelength/=2;
 	  }
 }
