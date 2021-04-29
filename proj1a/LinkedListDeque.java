@@ -29,7 +29,7 @@ public class LinkedListDeque<T> {
 	sentinel.next = sentinel;
 	sentinel.pre = sentinel.next;
    }
-	public LinkedListDeque(LinkedListDeque<T> other){
+	public LinkedListDeque(LinkedListDeque other){
 	  sentinel = new LinkedNode<>(item, null, null);
 	  for (int i = 0; i < other.size(); i++) {
 		size++;

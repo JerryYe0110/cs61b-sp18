@@ -11,7 +11,7 @@ public class ArrayDeque<T> {
 		Arraydeque = (T[])new Object[8];
 		ArrayDequelength=8;
 	}
-	public ArrayDeque(ArrayDeque<T> other) {
+	public ArrayDeque(ArrayDeque other) {
 		ArrayDequelength = other.ArrayDequelength;
 		Arraydeque = (T[])new Object[other.ArrayDequelength];
 		System.arraycopy(Arraydeque, 0, other.Arraydeque, 0, other.ArrayDequelength-1);
