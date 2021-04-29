@@ -42,7 +42,7 @@ public class LinkedListDeque<T> {
 		size++;
 	}
 	public void addLast(T item) {
-		sentinel.pre = new LinkedNode<>(item, null, sentinel.pre);
+		sentinel.pre = new LinkedNode<>(item, sentinel, sentinel.pre);
 		sentinel.pre.pre.next = sentinel.pre;
 		size++;
 	}
