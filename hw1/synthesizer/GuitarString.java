@@ -2,6 +2,10 @@
 //package <package name>;
 
 //Make sure this class is public
+package synthesizer;
+
+import edu.princeton.cs.algs4.StdAudio;
+
 public class GuitarString {
     /** Constants. Do not change. In case you're curious, the keyword final means
      * the values cannot be changed at runtime. We'll discuss this and other topics
@@ -18,6 +22,11 @@ public class GuitarString {
         //       cast the result of this divsion operation into an int. For better
         //       accuracy, use the Math.round() function before casting.
         //       Your buffer should be initially filled with zeros.
+		  int capacity = (int)Math.round(SR/frequency);
+		  buffer = new ArrayRingBuffer<Double>(capacity);
+		  for (int i = 0; i < capacity; i++) {
+		  	buffer.enqueue(0.0);
+		  }
     }
 
 
@@ -28,6 +37,14 @@ public class GuitarString {
         //       double r = Math.random() - 0.5;
         //
         //       Make sure that your random numbers are different from each other.
+		  double r;
+		  for (int i = 0; i < buffer.capacity(); i++) {
+		  	buffer.dequeue();
+		  }
+		  for (int i = 0; i < buffer.capacity(); i++) {
+		  	r = Math.random() - 0.5;
+			buffer.enqueue(r);
+		  }
     }
 
     /* Advance the simulation one time step by performing one iteration of
@@ -37,11 +54,17 @@ public class GuitarString {
         // TODO: Dequeue the front sample and enqueue a new sample that is
         //       the average of the two multiplied by the DECAY factor.
         //       Do not call StdAudio.play().
+		  double item1, item2;
+		  item1 = buffer.dequeue();
+		  item2 = buffer.peek();
+		  double out = (item2+item1)*0.5*DECAY;
+		  StdAudio.play(out);
+		  buffer.enqueue(out);
     }
 
     /* Return the double at the front of the buffer. */
     public double sample() {
         // TODO: Return the correct thing.
-        return 0;
+		  return buffer.peek();
     }
 }
