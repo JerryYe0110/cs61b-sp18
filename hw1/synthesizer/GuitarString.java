@@ -4,7 +4,6 @@
 //Make sure this class is public
 package synthesizer;
 
-import edu.princeton.cs.algs4.StdAudio;
 
 public class GuitarString {
     /** Constants. Do not change. In case you're curious, the keyword final means
@@ -58,7 +57,6 @@ public class GuitarString {
 		  item1 = buffer.dequeue();
 		  item2 = buffer.peek();
 		  double out = (item2+item1)*0.5*DECAY;
-		  StdAudio.play(out);
 		  buffer.enqueue(out);
     }
 
