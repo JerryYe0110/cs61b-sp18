@@ -34,9 +34,9 @@ public class SimpleOomage implements Oomage {
         if (!USE_PERFECT_HASH) {
             return red + green + blue;
         } else {
-			 String number1 = Integer.toString(red);
-			 String number2 = Integer.toString(green);
-			 String number3 = Integer.toString(blue);
+			 String number1 = Integer.toString(red/5);
+			 String number2 = Integer.toString(green/5);
+			 String number3 = Integer.toString(blue/5);
 			 while(number3.length()<3){number3 = "0"+number3;}
 			 while(number2.length()<3){number2 = "0"+number2;}
 			 number1 = number1+number2+number3;

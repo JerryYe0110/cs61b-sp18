@@ -55,13 +55,12 @@ public class TestSimpleOomage {
     @Test
     public void testRandomOomagesHashCodeSpread() {
         List<Oomage> oomages = new ArrayList<>();
-        int N = 10000;
+        int N = 100000;
 
         for (int i = 0; i < N; i += 1) {
             oomages.add(SimpleOomage.randomSimpleOomage());
         }
-        boolean A = OomageTestUtility.haveNiceHashCodeSpread(oomages, 9);
-        assertTrue(OomageTestUtility.haveNiceHashCodeSpread(oomages, 9));
+        assertTrue(OomageTestUtility.haveNiceHashCodeSpread(oomages, 5));
     }
 
     /** Calls tests for SimpleOomage. */
